@@ -3,20 +3,34 @@ import { useState } from 'react';
 import Header from '../Header/Header';
 import Message from '../Message/Message';
 import ReposResults from '../ReposResults/ReposResults';
-import data from '../../data/repos';
+import dataRepos from '../../data/repos';
 
 import './App.scss';
 
 function App() {
-  // Variable de state pour les repos -> default {}
-  const [repos, setRepos] = useState(data);
+  // Variable de state pour les repos -> default []
+  const [repos, setRepos] = useState(dataRepos.items);
   // Variable de state pour le contrôle de l'input -> default ''
   const [inputSearch, setInputSearch] = useState('');
 
+  const handleSearchRepos = (inputValue) => {
+    const newRepoArray = [];
+    const filteredRepos = repos.forEach((currentItem) => {
+      if (currentItem.full_name.includes(inputValue)) {
+        newRepoArray.push(currentItem);
+      }
+    });
+    setRepos(newRepoArray);
+  };
+
   return (
     <div className="App">
-      <Header searchValue={inputSearch} setSearchValue={setInputSearch} />
-      <Message count={repos.total_count} />
+      <Header
+        searchValue={inputSearch}
+        setSearchValue={setInputSearch}
+        handleSearchRepos={handleSearchRepos}
+      />
+      <Message count={dataRepos.total_count} />
       <ReposResults data={repos} />
     </div>
   );
