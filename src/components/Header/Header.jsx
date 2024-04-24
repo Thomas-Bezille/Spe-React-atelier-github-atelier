@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Icon, Input } from 'semantic-ui-react';
+import { Icon, Input, Button } from 'semantic-ui-react';
 
 import './Header.scss';
 import logo from '../../assets/img/logo-github.png';
@@ -26,6 +26,9 @@ const Header = ({ searchValue, setSearchValue, handleSearchRepos }) => {
           />
         </Input>
       </form>
+      <div className="btn-container">
+        <Button className="btn" content="Faq ?" />
+      </div>
     </header>
   );
 };

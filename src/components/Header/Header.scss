@@ -1,6 +1,8 @@
 @use 'src/styles/variables' as v;
 
 .header {
+  position: relative;
+
   .logo {
     margin: 1em 0;
     width: 12em;
@@ -13,6 +15,13 @@
     border: 1px solid v.$secondary-color;
     .input {
       width: 100%;
+    }
+  }
+  .btn-container {
+    display: flex;
+    .btn {
+      margin-top: 1em;
+      margin-left: 1.5em;
     }
   }
 }

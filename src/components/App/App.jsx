@@ -6,6 +6,7 @@ import Message from '../Message/Message';
 import ReposResults from '../ReposResults/ReposResults';
 
 import './App.scss';
+import Faq from '../Faq/Faq';
 
 function App() {
   // Variable de state pour les repos -> default []
