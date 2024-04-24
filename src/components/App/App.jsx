@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Header />
       <Message count={data.total_count} />
-      <ReposResults />
+      <ReposResults data={data} />
     </div>
   );
 }
