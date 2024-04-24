@@ -4,7 +4,6 @@ import axios from 'axios';
 import Header from '../Header/Header';
 import Message from '../Message/Message';
 import ReposResults from '../ReposResults/ReposResults';
-import dataRepos from '../../data/repos';
 
 import './App.scss';
 
