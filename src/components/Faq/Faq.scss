@@ -1,0 +1,19 @@
+@use 'src/styles/variables' as v;
+
+.faq-container {
+  text-align: left;
+  background-color: #fff;
+  margin: 1em auto;
+  padding: 0 1em;
+  width: 95%;
+  border: 1px solid v.$secondary-color;
+  p {
+    margin: 1em 0;
+    strong {
+      font-weight: bold;
+    }
+    em {
+      font-style: italic;
+    }
+  }
+}

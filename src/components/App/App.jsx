@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from '../Header/Header';
@@ -7,6 +8,7 @@ import ReposResults from '../ReposResults/ReposResults';
 
 import './App.scss';
 import Faq from '../Faq/Faq';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
   // Variable de state pour les repos -> default []
@@ -34,15 +36,33 @@ function App() {
       });
   };
 
+  const resetRepos = () => {
+    setRepos([]);
+    setCountRepos(0);
+    setInputSearch('');
+  };
+
   return (
     <div className="App">
       <Header
         searchValue={inputSearch}
         setSearchValue={setInputSearch}
         handleSearchRepos={loadRepos}
+        resetRepos={resetRepos}
       />
-      <Message count={countRepos} />
-      <ReposResults data={repos} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <Message count={countRepos} />
+              <ReposResults data={repos} />
+            </div>
+          }
+        />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

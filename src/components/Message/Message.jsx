@@ -7,7 +7,7 @@ const Message = ({ count }) => {
   if (count > 0) {
     message = `La recherche a donnée ${count} résultats`;
   } else {
-    message = 'Bienvenue, effectuez une recherche';
+    message = 'Effectuez une recherche';
   }
   return (
     <div className="container">
