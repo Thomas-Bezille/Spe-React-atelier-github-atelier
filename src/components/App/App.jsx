@@ -1,4 +1,5 @@
 import Header from '../Header/Header';
+import Message from '../Message/Message';
 
 import './App.scss';
 
@@ -6,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div>Message</div>
+      <Message />
       <div>ReposResults</div>
     </div>
   );
