@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 import Header from '../Header/Header';
 import Message from '../Message/Message';
@@ -9,18 +10,28 @@ import './App.scss';
 
 function App() {
   // Variable de state pour les repos -> default []
-  const [repos, setRepos] = useState(dataRepos.items);
+  const [repos, setRepos] = useState([]);
   // Variable de state pour le contrôle de l'input -> default ''
   const [inputSearch, setInputSearch] = useState('');
+  // Variable de state pour le nombre de résultat(s) -> default 0
+  const [countRepos, setCountRepos] = useState(0);
 
-  const handleSearchRepos = (inputValue) => {
-    const newRepoArray = [];
-    const filteredRepos = repos.forEach((currentItem) => {
-      if (currentItem.full_name.includes(inputValue)) {
-        newRepoArray.push(currentItem);
-      }
-    });
-    setRepos(newRepoArray);
+  const loadRepos = (inputValue) => {
+    axios
+      .get(`https://api.github.com/search/repositories?q=${inputValue}`)
+      .then((response) => {
+        const newRepoArray = [];
+        response.data.items.forEach((currentItem) => {
+          if (currentItem.full_name.includes(inputValue)) {
+            newRepoArray.push(currentItem);
+          }
+        });
+        setRepos(newRepoArray);
+        setCountRepos(response.data.total_count);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
   };
 
   return (
@@ -28,9 +39,9 @@ function App() {
       <Header
         searchValue={inputSearch}
         setSearchValue={setInputSearch}
-        handleSearchRepos={handleSearchRepos}
+        handleSearchRepos={loadRepos}
       />
-      <Message count={dataRepos.total_count} />
+      <Message count={countRepos} />
       <ReposResults data={repos} />
     </div>
   );
