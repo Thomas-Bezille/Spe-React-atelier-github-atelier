@@ -1,0 +1,13 @@
+@use 'src/styles/variables' as v;
+
+.container {
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 1em;
+  width: 95%;
+  border: 1px solid v.$secondary-color;
+  margin-top: 1em;
+  .message {
+    text-align: left;
+  }
+}
