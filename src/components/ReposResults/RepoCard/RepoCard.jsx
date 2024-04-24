@@ -1,4 +1,3 @@
-import './RepoCard.scss';
 import {
   CardMeta,
   CardHeader,
@@ -8,6 +7,8 @@ import {
   Icon,
   Image,
 } from 'semantic-ui-react';
+
+import './RepoCard.scss';
 
 const RepoCard = () => {
   return (
