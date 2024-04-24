@@ -1,18 +1,26 @@
-import './ReposResults.scss';
-
+import PropTypes from 'prop-types';
 import RepoCard from './RepoCard/RepoCard';
 
-const ReposResults = () => {
+import './ReposResults.scss';
+
+const ReposResults = ({ data }) => {
   return (
     <div className="main">
-      <RepoCard />
-      <RepoCard />
-      <RepoCard />
-      <RepoCard />
-      <RepoCard />
-      <RepoCard />
+      {data.items.map((currentItem) => {
+        return <RepoCard key={currentItem.id} {...currentItem} />;
+      })}
     </div>
   );
+};
+
+ReposResults.propTypes = {
+  data: PropTypes.shape({
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      })
+    ),
+  }).isRequired,
 };
 
 export default ReposResults;

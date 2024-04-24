@@ -1,4 +1,4 @@
-import './RepoCard.scss';
+import PropTypes from 'prop-types';
 import {
   CardMeta,
   CardHeader,
@@ -9,20 +9,28 @@ import {
   Image,
 } from 'semantic-ui-react';
 
-const RepoCard = () => {
+import './RepoCard.scss';
+
+const RepoCard = ({ full_name, owner, description }) => {
   return (
     <Card>
-      <Image src="/images/avatar/large/daniel.jpg" wrapped ui={false} />
+      <Image src={owner.avatar_url} wrapped ui={false} />
       <CardContent>
-        <CardHeader>freeCodeCamp</CardHeader>
-        <CardMeta>freeCodeCamp</CardMeta>
-        <CardDescription>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. A deserunt
-          minima soluta.
-        </CardDescription>
+        <CardHeader>{full_name}</CardHeader>
+        <CardMeta>{owner.login}</CardMeta>
+        <CardDescription>{description}</CardDescription>
       </CardContent>
     </Card>
   );
+};
+
+RepoCard.propTypes = {
+  full_name: PropTypes.string.isRequired,
+  owner: PropTypes.shape({
+    login: PropTypes.string.isRequired,
+    avatar_url: PropTypes.string.isRequired,
+  }).isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default RepoCard;
